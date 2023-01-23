@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getLorem } from "./redux/loremSlice";
 
 function App() {
+  const { data } = useSelector((state) => state.lorem);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLorem());
+  }, []);
+  useEffect(() => {
+    console.log(data);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {data.map((e) => {
+        return (
+          <div key={e?.id}>
+            <div style={{ width: "fit-content", margin: "auto" }}>
+              {" "}
+              {e.title}
+            </div>
+
+            <br />
+          </div>
+        );
+      })}
     </div>
   );
 }
