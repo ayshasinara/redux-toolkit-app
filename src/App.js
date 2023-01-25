@@ -1,31 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getLorem } from "./redux/loremSlice";
+import React from "react";
+import MainRouter from "./pages/MainRouter";
 
 function App() {
-  const { data } = useSelector((state) => state.lorem);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getLorem());
-  }, []);
-  useEffect(() => {
-    console.log(data);
-  }, []);
   return (
     <div>
-      {data.map((e) => {
-        return (
-          <div key={e?.id}>
-            <div style={{ width: "fit-content", margin: "auto" }}>
-              {" "}
-              {e.title}
-            </div>
-
-            <br />
-          </div>
-        );
-      })}
+      <MainRouter />
     </div>
   );
 }

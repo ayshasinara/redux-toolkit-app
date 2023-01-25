@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { async } from "q";
 
 export const getLorem = createAsyncThunk(
   "lorem/getData",
   async (arg, { rejectWithValue }) => {
     try {
-      return await fetch("https://jsonplaceholder.typicode.com/todos")
+      return await fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
         .then((res) => {
           //   console.log(res);
