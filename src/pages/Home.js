@@ -26,13 +26,6 @@ function Home() {
         `one iteam added and now you have ${cartData.length + 1} in your cart `
       );
     }
-    if (found) {
-      dispatch(
-        incrementCount({ ...obj, count: obj?.count ? obj.count + 1 : 1 }).then(
-          (res) => dispatch(getDataToCart(res))
-        )
-      );
-    }
   };
   return (
     <div>
