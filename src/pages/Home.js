@@ -25,6 +25,8 @@ function Home() {
       alert(
         `one iteam added and now you have ${cartData.length + 1} in your cart `
       );
+    } else {
+      alert("This product already existed in your cart ");
     }
   };
   return (
