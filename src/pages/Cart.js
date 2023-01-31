@@ -8,9 +8,6 @@ import { deleteIteamFromCart, getDataToCart } from "../redux/cartSlice";
 function Cart() {
   const cartData = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
-  useEffect(() => {
-    console.log(cartData);
-  }, [cartData]);
 
   const handleDelete = (id) => {
     dispatch(deleteIteamFromCart(id))
@@ -19,7 +16,7 @@ function Cart() {
         return dispatch(getDataToCart());
       });
   };
-  const getCount = () => {};
+
   return (
     <div>
       <Navbar />

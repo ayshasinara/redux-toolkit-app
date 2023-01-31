@@ -7,7 +7,6 @@ export const getLorem = createAsyncThunk(
       return await fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
         .then((res) => {
-          //   console.log(res);
           return res;
         });
     } catch (error) {
@@ -27,7 +26,6 @@ const loremSlice = createSlice({
       state.loading = true;
     },
     [getLorem.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.loading = false;
       state.data = payload;
       state.isSuccess = true;

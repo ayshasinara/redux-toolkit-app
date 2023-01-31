@@ -10,13 +10,13 @@ export const cartSlice = createSlice({
     },
     deleteIteamFromCart: (state, action) => {
       let data = state.cart.filter((item) => item.id !== action.payload);
+
       return {
         ...state,
         cart: data,
       };
     },
     incrementCount: (state, action) => {
-      console.log(action.payload);
       let data = state.cart.filter((item) => item.id === action.payload.id);
 
       return {
@@ -30,9 +30,21 @@ export const cartSlice = createSlice({
         ],
       };
     },
+    updateDataToCart: (state, action) => {
+      let find = state.cart.filter((e) =>
+        e.id === action.payload
+          ? { ...state.e, count: state?.e.count + 1 }
+          : { ...state }
+      );
+      return find;
+    },
   },
 });
 
-export const { getDataToCart, deleteIteamFromCart, incrementCount } =
-  cartSlice.actions;
+export const {
+  getDataToCart,
+  deleteIteamFromCart,
+  incrementCount,
+  updateDataToCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;
