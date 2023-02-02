@@ -124,8 +124,18 @@ function Product() {
           <h1>{data.title}</h1>
           <p>{data.description}</p>
           <h3>Rs. {price}</h3>
-          <div style={{ display: "flex  " }}>
+          <div
+            style={{ display: "flex  ", justifyContent: "center", margin: 20 }}
+          >
             <button
+              style={{
+                width: 50,
+                height: 50,
+                backgroundColor: "black",
+                color: "white ",
+                fontSize: 25,
+                fontWeight: 600,
+              }}
               onClick={() => {
                 if (count > 0) {
                   setCount(count - 1);
@@ -135,8 +145,18 @@ function Product() {
               -
             </button>
 
-            <div>{count}</div>
+            <h2 style={{ fontSize: 20, marginRight: 30, marginLeft: 30 }}>
+              {count}
+            </h2>
             <button
+              style={{
+                width: 50,
+                height: 50,
+                backgroundColor: "black",
+                color: "white ",
+                fontSize: 25,
+                fontWeight: 600,
+              }}
               onClick={() => {
                 setCount(Number(count) + 1);
                 console.log(count);
