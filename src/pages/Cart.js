@@ -3,10 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Components/Navbar";
 import { AiFillStar } from "react-icons/ai";
 import randum_id from "random-id";
-import { deleteIteamFromCart, getDataToCart } from "../redux/cartSlice";
+import {
+  deleteIteamFromCart,
+  getDataToCart,
+  totalPrice,
+} from "../redux/cartSlice";
 
 function Cart() {
   const cartData = useSelector((state) => state.cart.cart);
+  const totalCartPrice = useSelector((state) => state.cart.totalprice);
+
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
@@ -17,9 +23,17 @@ function Cart() {
       });
   };
 
+  useEffect(() => {
+    dispatch(totalPrice());
+  }, [cartData]);
+  useEffect(() => {
+    console.log(totalCartPrice);
+  }, []);
+
   return (
     <div>
       <Navbar />
+      <h1>Total cart price: {totalCartPrice}</h1>
       <div
         style={{
           display: "grid",
@@ -59,6 +73,9 @@ function Cart() {
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>Rs: {e?.price}</div>
+                {/* <div>
+                  Rs: {e?.price} X {e?.count} ={e?.price * e?.count}
+                </div> */}
                 <div style={{ display: "flex" }}>
                   <AiFillStar style={{ marginTop: 2 }} />
                   <div>{e?.rating?.rate}</div>

@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cart: [],
+    totalprice: 0,
   },
   reducers: {
     getDataToCart: (state, action) => {
@@ -31,12 +33,14 @@ export const cartSlice = createSlice({
       };
     },
     updateDataToCart: (state, action) => {
-      let find = state.cart.filter((e) =>
-        e.id === action.payload
-          ? { ...state.e, count: state?.e.count + 1 }
-          : { ...state }
-      );
-      return find;
+      let data = state.cart.filter((e) => e.id !== action.payload.id);
+      data.push(action.payload);
+      return { ...state, cart: data };
+    },
+    totalPrice: (state) => {
+      let totalAmmount = state.cart.reduce((a, c) => c.count * c.price + a, 0);
+      console.log(totalAmmount);
+      return { ...state, totalprice: totalAmmount };
     },
   },
 });
@@ -46,5 +50,6 @@ export const {
   deleteIteamFromCart,
   incrementCount,
   updateDataToCart,
+  totalPrice,
 } = cartSlice.actions;
 export default cartSlice.reducer;
